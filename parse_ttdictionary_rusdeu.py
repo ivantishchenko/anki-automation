@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import csv
 
 def peek_next_block(f):
     pos = f.tell()
@@ -48,10 +49,11 @@ def main():
 
     print("Parsed {} words".format(len(words_map)))
 
-    # 
-
-    # for k, _ in words_map.items():
-    #     print(k)
+    # Create a csv
+    with open(file_name + '.csv', 'w', newline='') as csv_file:
+        words_writer = csv.writer(csv_file)
+        for front, back in words_map.items():
+            words_writer.writerow([front, back])
 
 if __name__ == '__main__':
     main()
